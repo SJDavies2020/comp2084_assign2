@@ -26,13 +26,16 @@ namespace Assign1.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=comp2084a1.database.windows.net;Initial Catalog=Assign1;Persist Security Info=True;User ID=stevenjdavies2013;Password=Bonnied029$");
-            }
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Data Source=comp2084a1.database.windows.net;Initial Catalog=Assign1;Persist Security Info=True;User ID=stevenjdavies2013;Password=Bonnied029$");
+         }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // add for bug fix in identity.
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity<Cmake>(entity =>

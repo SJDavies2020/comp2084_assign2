@@ -39,9 +39,19 @@ namespace Assign1
             services.AddDbContext<Assign1Context>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+
+            // config identity
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<Assign1Context>();
+                .AddRoles<ApplicationRole>()
+                .AddRoleManager<RoleManager<ApplicationRole>>()
+                .AddEntityFrameworkStores<Assign1Context>()
+                .AddDefaultTokenProviders();
+                       
+            //services.AddDefaultIdentity<IdentityUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<Assign1Context>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

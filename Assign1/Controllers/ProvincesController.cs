@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assign1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assign1.Controllers
 {
@@ -41,7 +42,7 @@ namespace Assign1.Controllers
 
             return View(province);
         }
-
+        [Authorize]
         // GET: Provinces/Create
         public IActionResult Create()
         {
@@ -63,7 +64,7 @@ namespace Assign1.Controllers
             }
             return View(province);
         }
-
+        [Authorize]
         // GET: Provinces/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -114,7 +115,7 @@ namespace Assign1.Controllers
             }
             return View(province);
         }
-
+        [Authorize]
         // GET: Provinces/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
