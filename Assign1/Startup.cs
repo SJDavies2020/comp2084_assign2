@@ -14,6 +14,13 @@ using Assign1.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Assign1.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
 
 namespace Assign1
 {
@@ -58,6 +65,13 @@ namespace Assign1
                     options.ClientId = ClientId;
                     options.ClientSecret = ClientSecret;
                 });
+
+            services.AddAuthentication(options => { /* Authentication options */ })
+             .AddGitHub(options =>
+             {
+                 options.ClientId = "c024e5166de3b648d69c";
+                 options.ClientSecret = "d3617841be7e63e282c404f409e336837800f7f0";
+             });
 
             //services.AddDefaultIdentity<IdentityUser>()
             //    .AddDefaultUI(UIFramework.Bootstrap4)
