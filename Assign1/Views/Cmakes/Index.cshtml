@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<Assign1.Models.Cmake>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Car Makes";
 }
 
-<h1>Index</h1>
-
+<h1></h1>
+@if (User.Identity.IsAuthenticated) { 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Add New Car Make</a>
 </p>
+}
 <table class="table sortable table-striped table-hover">
     <thead>
         <tr>
@@ -24,11 +25,21 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CarMake)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CmakeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CmakeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CmakeId">Delete</a>
-            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CmakeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.CmakeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CmakeId">Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.CmakeId">Details</a>
+                </td>
+            }
+
         </tr>
 }
     </tbody>

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Assign1.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Assign1.Controllers
 {
+    [Authorize]
     public class WarrentiesController : Controller
     {
         private readonly Assign1Context _context;
@@ -17,13 +19,13 @@ namespace Assign1.Controllers
         {
             _context = context;
         }
-
+        [AllowAnonymous]
         // GET: Warrenties
         public async Task<IActionResult> Index()
         {
             return View(await _context.Warrenty.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Warrenties/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -41,7 +43,7 @@ namespace Assign1.Controllers
 
             return View(warrenty);
         }
-
+       
         // GET: Warrenties/Create
         public IActionResult Create()
         {
@@ -63,7 +65,7 @@ namespace Assign1.Controllers
             }
             return View(warrenty);
         }
-
+        
         // GET: Warrenties/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -114,7 +116,7 @@ namespace Assign1.Controllers
             }
             return View(warrenty);
         }
-
+        
         // GET: Warrenties/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Assign1.Controllers
 {
+    [Authorize]
     public class ProvincesController : Controller
     {
         private readonly Assign1Context _context;
@@ -18,13 +19,13 @@ namespace Assign1.Controllers
         {
             _context = context;
         }
-
+        [AllowAnonymous]
         // GET: Provinces
         public async Task<IActionResult> Index()
         {
             return View(await _context.Province.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Provinces/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -42,7 +43,7 @@ namespace Assign1.Controllers
 
             return View(province);
         }
-        [Authorize]
+        
         // GET: Provinces/Create
         public IActionResult Create()
         {
@@ -64,7 +65,7 @@ namespace Assign1.Controllers
             }
             return View(province);
         }
-        [Authorize]
+        
         // GET: Provinces/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -115,7 +116,7 @@ namespace Assign1.Controllers
             }
             return View(province);
         }
-        [Authorize]
+        
         // GET: Provinces/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

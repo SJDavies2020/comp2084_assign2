@@ -9,7 +9,9 @@ using Assign1.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Assign1.Controllers
+
 {
+    [Authorize]
     public class CmakesController : Controller
     {
         private readonly Assign1Context _context;
@@ -18,13 +20,13 @@ namespace Assign1.Controllers
         {
             _context = context;
         }
-
+        [AllowAnonymous]
         // GET: Cmakes
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cmake.ToListAsync());
         }
-
+        [AllowAnonymous]
         // GET: Cmakes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,7 +45,7 @@ namespace Assign1.Controllers
             return View(cmake);
         }
 
-        [Authorize]
+        
         // GET: Cmakes/Create
         public IActionResult Create()
         {
@@ -66,7 +68,7 @@ namespace Assign1.Controllers
             return View(cmake);
         }
 
-        [Authorize]
+       
         // GET: Cmakes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -117,7 +119,7 @@ namespace Assign1.Controllers
             }
             return View(cmake);
         }
-        [Authorize]
+      
         // GET: Cmakes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

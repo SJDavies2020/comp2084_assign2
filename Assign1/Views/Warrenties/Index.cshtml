@@ -5,10 +5,11 @@
 }
 
 <h1>Add NEW Warrenty Type</h1>
-
+@if (User.Identity.IsAuthenticated) { 
 <p>
     <a asp-action="Create">Add New Warrenty</a>
 </p>
+}
 <table class="table sortable table-striped table-hover">
     <thead>
         <tr>
@@ -24,12 +25,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.WarrentyTerm)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.WarrentyId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.WarrentyId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.WarrentyId">Delete</a>
-            </td>
-        </tr>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.WarrentyId">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.WarrentyId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.WarrentyId">Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.WarrentyId">Details</a>
+                </td>
+            }
+                
+            </tr>
 }
     </tbody>
 </table>

@@ -48,7 +48,17 @@ namespace Assign1
                 .AddRoleManager<RoleManager<ApplicationRole>>()
                 .AddEntityFrameworkStores<Assign1Context>()
                 .AddDefaultTokenProviders();
-                       
+
+            var ClientId = Configuration.GetSection("Google")["ClientId"];
+            var ClientSecret = Configuration.GetSection("Google")["ClientSecret"];
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    options.ClientId = ClientId;
+                    options.ClientSecret = ClientSecret;
+                });
+
             //services.AddDefaultIdentity<IdentityUser>()
             //    .AddDefaultUI(UIFramework.Bootstrap4)
             //    .AddEntityFrameworkStores<Assign1Context>();

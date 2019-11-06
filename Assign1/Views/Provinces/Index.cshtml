@@ -24,11 +24,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Province1)
             </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProvinceId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ProvinceId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ProvinceId">Delete</a>
+                </td>
+            }else{
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProvinceId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProvinceId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProvinceId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.ProvinceId">Details</a>
             </td>
+            }
         </tr>
 }
     </tbody>
